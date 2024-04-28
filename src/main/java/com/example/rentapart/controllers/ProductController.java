@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ProductController {
     @GetMapping("/")
     public String products(){
+        int a = 3;;
         return "products";
     }
-
+int a = 3;
 }
