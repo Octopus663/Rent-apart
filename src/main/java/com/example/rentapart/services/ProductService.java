@@ -27,4 +27,13 @@ private long ID = 0;
     public  void delete(Long id) {
         products1.removeIf(product -> product.getId().equals(id));
     }
+
+    public Product getProductByID(Long id) {
+        for (Product product : products1) {
+            if (product.getId().equals(id)) return product;
+            {
+            }
+        }
+        return null;
+    }
 }
