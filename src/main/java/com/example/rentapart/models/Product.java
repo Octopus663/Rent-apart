@@ -11,5 +11,6 @@ public class Product {
     private String description;
     private int price;
     private String city;
+    private String district;
     private String author;
 }

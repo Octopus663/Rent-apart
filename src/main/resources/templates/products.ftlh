@@ -18,6 +18,7 @@
     Опис квартири: <input type="text" name="description"/><br><br>
     Ціна : <input type="number" name="price"/><br><br>
     Місто : <input type="text" name="city"/><br><br>
+    Район : <input type="text" name="district"><br><br>
     Власник: <input type="text" name="author"/><br><br>
     <input type="submit" value="Добавити квартиру"/>
 </form>
