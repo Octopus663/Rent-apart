@@ -12,9 +12,9 @@ private List<Product> products1 = new ArrayList<>();
 private long ID = 0;
     {
         products1.add(new Product(++ID,"Квартира1", "Трьохкімнатна квартира",
-                25000, "Київ" , "Андрій"));
+                25000, "Київ" , "Святошинський", "Андрій"));
         products1.add(new Product(++ID,"Квартира2", "Двокімнатна квартира",
-                23000, "Житомир" , "Володя"));
+                23000, "Житомир" ,"Деснянський", "Вася"));
     }
 
     public List<Product> listProducts() {return products1; }
