@@ -6,10 +6,16 @@
 <body>
 <h1>Орендуй квартиру за вигідною ціною вже сьогодні!</h1><hr>
 <h3>Квартири по всій Україні</h3>
+<form action="/" method="get">
+    Пошук по назві квартири: <input type="text" name="title"><br>
+    <input type="submit" value="Пошук">
+</form>
 <#list products as product>
 <div>
-    <p>${product.title} ${product.price} грн | <a href="/product/${product.id}">Детальна інформація</a> </p>
+    <p>${product.title} ${product.price} грн | <a href="/product/${product.id}">Детальна інформація</a></p>
 </div>
+    <#else>
+    <h4>На жаль, таких квартир немає</h4>
 </#list>
 <hr>
 <h4>Добавити нову квартиру на продаж</h4>
