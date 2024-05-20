@@ -15,19 +15,20 @@ import lombok.NoArgsConstructor;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column("id")
+    @Column(name = "id")
     private Long id;
-    @Column("name")
+    @Column(name = "name")
     private String name;
-    @Column("filename")
+    @Column(name = "filename")
     private String filename;
-    @Column("size")
+    @Column(name = "size")
     private Long size;
-    @Column("contentType")
+    @Column(name = "contentType")
     private String contentType;
-    @Column("IsPreviewImage")
+    @Column(name = "IsPreviewImage")
     private boolean IsPreviewImage;
     @Lob
+    @Column(name = "bytes", columnDefinition = "longblob")
     private byte[] bytes;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

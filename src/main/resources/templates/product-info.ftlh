@@ -5,6 +5,11 @@
 <body>
 <h1>Орендуй квартиру за вигідною ціною вже сьогодні!</h1><hr>
 <h2>Детальна інформація про квартиру</h2>
+
+<#list images as img>
+    <img src="/images/${img.id}" height="100px"/><br>
+</#list>
+
 <b>Назва квратири: ${product.title}</b><br/><br/>
 <b>Опис квратири: ${product.description}</b><br/><br/>
 <b>Ціна: ${product.price}</b><br/><br/>
