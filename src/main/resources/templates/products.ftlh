@@ -3,6 +3,7 @@
 <head>
     <title>RentHaven</title>
 </head>
+
 <body>
 <h1>Орендуй квартиру за вигідною ціною вже сьогодні!</h1>
 <hr>
@@ -28,11 +29,11 @@
     Район : <input type="text" name="district"><br><br>
     Власник: <input type="text" name="author"/><br><br>
     <h4>Додати фотографії квартири:</h4>
-    (перше завантажене зображення буде прев'ю об'єкта)
+    (перше завантажене зображення буде прев'ю об'єкта)<br><br>
     <input type="file" name="file1"/><br><br>
     <input type="file" name="file2"/><br><br>
     <input type="file" name="file3"/><br><br>
-    <input type="submit" value="Добавити квартиру"/>
+    <h3><input type="submit" value="Добавити квартиру"/></h3>
 </form>
 </body>
 </html>

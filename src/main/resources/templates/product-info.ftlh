@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>RentHaven</title>
+    <title>RentHeaven</title>
 </head>
 <body>
 <h1>Орендуй квартиру за вигідною ціною вже сьогодні!</h1><hr>
