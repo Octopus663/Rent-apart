@@ -5,7 +5,13 @@
 </head>
 
 <body>
-<h1>Орендуй квартиру за вигідною ціною вже сьогодні!</h1>
+<h1>Орендуй квартиру за вигідною ціною вже сьогодні! | <a href="/login"> Увійти</a></h1>
+
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Вийти">
+</form>
+
 <hr>
 <h3>Квартири по всій Україні</h3>
 <form action="/" method="get">
