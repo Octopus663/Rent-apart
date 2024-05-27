@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>RentHeaven</title>
 </head>
 <body>
@@ -15,10 +16,7 @@
 <b>Ціна: ${product.price}</b><br/><br/>
 <b>Місто: ${product.city}</b><br/><br/>
 <b>Район: ${product.district}</b><br/><br/>
-<b>Власник квратири: ${product.author}</b><br/>
-<hr>
-<form action="/product/delete/${product.id}" method="post">
-    <input type="submit" value="Видалити оголошення"/>
-</form>
+<b>Автор: ${product.user.name}</b><br><br>
+<b>Номер телефону: ${product.user.phoneNumber}</b><br/>
 </body>
 </html>

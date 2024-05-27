@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>RentHaven</title>
 </head>
 <body>
-<h1>RentHaven</h1><hr>
+<h1>RentHaven</h1>
+<hr>
 <h4>Реєстрація</h4>
 <form action="/registration" method="post">
-    Им'я користувача: <input type="text" name="name"><br><br>
+    Ім'я користувача: <input type="text" name="name"><br><br>
     Ел. почта: <input type="email" name="email"><br><br>
     Номер телефону: <input type="text" name="phoneNumber"><br><br>
     Пароль: <input type="password" name="password"><br><br>
