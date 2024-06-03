@@ -1,9 +1,12 @@
 package com.example.rentapart.controllers;
 
-
 import com.example.rentapart.models.Product;
+import com.example.rentapart.models.User;
 import com.example.rentapart.services.ProductService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,35 +21,64 @@ import java.security.Principal;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
+    @Autowired
     private final ProductService productService;
 
     @GetMapping("/")
-    public String products(@RequestParam(name = "title", required = false) String title, Principal principal, Model model){
+    public String products(@RequestParam(name = "title", required = false) String title, Principal principal, Model model) {
         model.addAttribute("products", productService.listProducts(title));
         model.addAttribute("user", productService.getUserByPrincipal(principal));
         return "products";
     }
 
+    @GetMapping("/about-us")
+    public String aboutUs(Model model, Principal principal) {
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
+        return "about-us";
+    }
+
+
     @GetMapping("/product/{id}")
-    public String productInfo(@PathVariable Long id, Model model){
-        Product product = productService.getProductByID(id);
+    public String productInfo(@PathVariable Long id, Model model, Principal principal) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("user", productService.getUserByPrincipal(principal));
         model.addAttribute("product", product);
         model.addAttribute("images", product.getImages());
         return "product-info";
     }
-
+    @PostMapping("/add-apart")
+    public String createProduct1(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
+                                @RequestParam("file3") MultipartFile file3, Product product, Principal principal) throws IOException {
+        productService.save(principal, product, file1, file2, file3);
+        return "redirect:/add-apart";
+    }
 
 
     @PostMapping("/product/create")
-    public String createProduct(@RequestParam("file1") MultipartFile file1, @RequestParam("file2")MultipartFile file2,
+    public String createProduct(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
                                 @RequestParam("file3") MultipartFile file3, Product product, Principal principal) throws IOException {
         productService.save(principal, product, file1, file2, file3);
         return "redirect:/";
     }
 
-    @PostMapping("/product/delete/{id}")
-    public String deleteProduct(@PathVariable Long id){
-        productService.delete(id);
-        return "redirect:/";
+
+    @PostMapping("/product/{id}/delete")
+    public String delete(@PathVariable Long id, Principal principal) {
+        try {
+            productService.deleteProduct(id, productService.getUserByPrincipal(principal));
+            return "redirect:/";
+        } catch (AccessDeniedException e) {
+            // Обробка виключення доступу
+            return "redirect:/no-permission";
+        } catch (EntityNotFoundException e) {
+            // Обробка виключення, якщо продукт не знайдений
+            return "redirect:/error/404";
+        } catch (Exception e) {
+            // Обробка інших виключень
+            return "redirect:/error";
+        }
     }
+
+
+
 }

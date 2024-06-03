@@ -1,0 +1,16 @@
+.content {
+    flex: 1;
+    padding-bottom: 60px; /* Висота футера */
+}
+footer {
+    background-color: #FF8C00;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
