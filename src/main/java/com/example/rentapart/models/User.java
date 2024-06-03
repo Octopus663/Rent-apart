@@ -2,6 +2,7 @@ package com.example.rentapart.models;
 
 import com.example.rentapart.models.enums.Role;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -35,6 +36,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @ToString.Exclude
     private List<Product> products = new ArrayList<>();
     private LocalDateTime dateOfCreated;
 

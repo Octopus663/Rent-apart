@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "images")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,5 +32,7 @@ public class Image {
     private byte[] bytes;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ToString.Exclude
     private Product product;
+
 }

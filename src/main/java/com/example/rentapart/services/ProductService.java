@@ -5,12 +5,17 @@ import com.example.rentapart.models.Product;
 import com.example.rentapart.models.User;
 import com.example.rentapart.repositories.ProductRepository;
 import com.example.rentapart.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -18,7 +23,9 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductService {
+    @Autowired
     private final ProductRepository productRepository;
+    @Autowired
     private final UserRepository userRepository;
 
     public List<Product> listProducts(String title) {
@@ -66,11 +73,22 @@ public class ProductService {
         return image;
     }
 
-    public void delete(Long id) {
-        productRepository.deleteById(id);
+
+    @Transactional
+    public void deleteProduct(Long id, User user) {
+        Product product = productRepository.findById(id)
+                .orElse(null);
+        if (product != null) {
+            //if (product.getUser().equals(user)) {
+                log.info("Product with id = {} start deleted", product.getId());
+                productRepository.delete(product);
+                productRepository.flush();
+                log.info("Product with id = {} was deleted", product.getId());
+        }
     }
 
-    public Product getProductByID(Long id) {
+
+    public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 }
